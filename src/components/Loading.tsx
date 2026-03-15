@@ -1,89 +1,123 @@
 import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
-
 import Marquee from "react-fast-marquee";
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
+  /* ---------- Matrix Effect ---------- */
+
+  useEffect(() => {
+    const canvas = document.getElementById("matrix") as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d")!;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters =
+      "アカサタナハマヤャラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops: number[] = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+
+    const draw = () => {
+      ctx.fillStyle = "rgba(2,6,23,0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ffaa";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text =
+          letters[Math.floor(Math.random() * letters.length)];
+
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (
+          drops[i] * fontSize > canvas.height &&
+          Math.random() > 0.975
+        ) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    };
+
+    const interval = setInterval(draw, 33);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  /* ---------- Loading Logic (UNCHANGED) ---------- */
+
+  if (percent >= 100 && !loaded) {
     setTimeout(() => {
       setLoaded(true);
       setTimeout(() => {
         setIsLoaded(true);
-      }, 1000);
+      }, 900);
     }, 600);
   }
 
   useEffect(() => {
     import("./utils/initialFX").then((module) => {
       if (isLoaded) {
-        setClicked(true);
         setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
+          module.initialFX?.();
           setIsLoading(false);
         }, 900);
       }
     });
   }, [isLoaded]);
 
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const { currentTarget: target } = e;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  }
-
   return (
     <>
+      {/* MATRIX BACKGROUND */}
+      <canvas id="matrix" className="matrix-bg"></canvas>
+
+      {/* HEADER */}
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
-          RC
-        </a>
-        <div className={`loaderGame ${clicked && "loader-out"}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
-          </div>
-        </div>
+        <span className="loader-title">SAM KHAN</span>
       </div>
+
+      {/* MAIN LOADER */}
       <div className="loading-screen">
-        <div className="loading-marquee">
-          <Marquee>
-            <span> Full Stack Developer</span> <span>Software Engineer</span>
-            <span> Full Stack Developer</span> <span>Software Engineer</span>
-          </Marquee>
-        </div>
-        <div
-          className={`loading-wrap ${clicked && "loading-clicked"}`}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <div className="loading-hover"></div>
-          <div className={`loading-button ${loaded && "loading-complete"}`}>
-            <div className="loading-container">
-              <div className="loading-content">
-                <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
-                </div>
-              </div>
-              <div className="loading-box"></div>
-            </div>
-            <div className="loading-content2">
-              <span>Welcome</span>
-            </div>
+        <div className="loading-wrap">
+          <div className="loading-content">
+            INITIALIZING AI SYSTEM
+            <span>{percent}%</span>
           </div>
+
+          <div className="loading-bar">
+            <div
+              className="loading-progress"
+              style={{ width: `${percent}%` }}
+            />
+          </div>
+
+          <div className="loading-content2">
+            FULL STACK • AI/ML ENGINEER
+          </div>
+        </div>
+
+        {/* MARQUEE */}
+        <div className="loading-marquee">
+          <Marquee speed={80}>
+            <span>FULL STACK DEVELOPER</span>
+            <span>AI / ML ENGINEER</span>
+            <span>SOFTWARE ENGINEER</span>
+            <span>NEXT.JS • NODE • AI</span>
+          </Marquee>
         </div>
       </div>
     </>
@@ -91,6 +125,8 @@ const Loading = ({ percent }: { percent: number }) => {
 };
 
 export default Loading;
+
+/* ---------- PROGRESS FUNCTION (UNCHANGED) ---------- */
 
 export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
@@ -102,9 +138,11 @@ export const setProgress = (setLoading: (value: number) => void) => {
       setLoading(percent);
     } else {
       clearInterval(interval);
+
       interval = setInterval(() => {
         percent = percent + Math.round(Math.random());
         setLoading(percent);
+
         if (percent > 91) {
           clearInterval(interval);
         }
@@ -120,6 +158,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
   function loaded() {
     return new Promise<number>((resolve) => {
       clearInterval(interval);
+
       interval = setInterval(() => {
         if (percent < 100) {
           percent++;
@@ -131,5 +170,6 @@ export const setProgress = (setLoading: (value: number) => void) => {
       }, 2);
     });
   }
+
   return { loaded, percent, clear };
 };

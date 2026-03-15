@@ -84,28 +84,27 @@ const WhatIDo = () => {
                 />
               </svg>
             </div>
-            <div className="what-corner"></div>
-
-            <div className="what-content-in">
-              <h3>FRONTEND</h3>
-              <h4>Building Interactive UIs</h4>
-              <p>
-                Crafting performant, responsive interfaces with modern frameworks.
-                From SPAs to micro-frontends, I deliver pixel-perfect experiences.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">React.js</div>
-                <div className="what-tags">Angular</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">Material UI</div>
-                <div className="what-tags">HTML5</div>
-                <div className="what-tags">CSS3</div>
-              </div>
-              <div className="what-arrow"></div>
-            </div>
+         <div className="what-content-in">
+  <h3>FULL STACK</h3>
+  <h4>End-to-End Web Development</h4>
+  <p>
+    Building complete web applications from frontend interfaces to backend
+    architecture. I create scalable, secure, and high-performance full-stack
+    systems with modern technologies.
+  </p>
+  <h5>Skillset & tools</h5>
+  <div className="what-content-flex">
+    <div className="what-tags">React.js</div>
+    <div className="what-tags">Next.js</div>
+    <div className="what-tags">Node.js</div>
+    <div className="what-tags">Express.js</div>
+    <div className="what-tags">MongoDB</div>
+    <div className="what-tags">PostgreSQL</div>
+    <div className="what-tags">TypeScript</div>
+    <div className="what-tags">REST APIs</div>
+  </div>
+  <div className="what-arrow"></div>
+</div>
           </div>
           <div
             className="what-content what-noTouch"
@@ -125,26 +124,27 @@ const WhatIDo = () => {
               </svg>
             </div>
             <div className="what-corner"></div>
-            <div className="what-content-in">
-              <h3>BACKEND</h3>
-              <h4>Scalable Server Architecture</h4>
-              <p>
-                Designing robust APIs and microservices. From CMS platforms to
-                complex business logic, I build backends that scale.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">NestJS</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">MongoDB</div>
-                <div className="what-tags">PostgreSQL</div>
-                <div className="what-tags">REST APIs</div>
-                <div className="what-tags">Microservices</div>
-                <div className="what-tags">Python</div>
-              </div>
-              <div className="what-arrow"></div>
-            </div>
+          <div className="what-content-in">
+  <h3>AI / ML</h3>
+  <h4>Intelligent Systems & Automation</h4>
+  <p>
+    Developing AI-powered applications including recommendation systems,
+    predictive models, and AI assistants. I integrate machine learning with
+    modern web apps to build intelligent solutions.
+  </p>
+  <h5>Skillset & tools</h5>
+  <div className="what-content-flex">
+    <div className="what-tags">Python</div>
+    <div className="what-tags">TensorFlow</div>
+    <div className="what-tags">Scikit-Learn</div>
+    <div className="what-tags">Pandas</div>
+    <div className="what-tags">NumPy</div>
+    <div className="what-tags">OpenAI API</div>
+    <div className="what-tags">Gemini API</div>
+    <div className="what-tags">Data Analysis</div>
+  </div>
+  <div className="what-arrow"></div>
+</div>
           </div>
         </div>
       </div>

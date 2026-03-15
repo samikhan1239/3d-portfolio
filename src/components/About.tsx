@@ -5,13 +5,13 @@ const About = () => {
     <div className="about-section" id="about">
       <div className="about-me">
         <h3 className="title">About Me</h3>
-        <p className="para">
-          Full Stack Developer with 4+ years of experience building scalable web
-          applications using React.js, Angular, Next.js, Node.js, and NestJS. Skilled
-          in microservices architecture, CMS development, and low-code platforms.
-          Passionate about creating high-performance, production-ready solutions
-          from concept to deployment.
-        </p>
+      <p className="para">
+  Full Stack & AI/ML Developer specializing in modern web technologies and
+  intelligent systems. Skilled in React.js, Next.js, Node.js, MongoDB, and
+  Python-based machine learning. I enjoy building scalable applications,
+  AI-powered platforms, and high-performance user-focused software.
+</p>
+
       </div>
     </div>
   );
