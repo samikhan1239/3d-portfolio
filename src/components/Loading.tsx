@@ -19,7 +19,7 @@ const Loading = ({ percent }: { percent: number }) => {
     canvas.height = window.innerHeight;
 
     const letters =
-      "アカサタナハマヤャラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     const fontSize = 16;
     const columns = canvas.width / fontSize;
 

@@ -5,8 +5,9 @@ export const startMatrix = () => {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
+  /* Developer characters */
   const codeChars =
-    "const{}[]()<>=+-*/;:!&|0123456789functionreturnimportexportasyncawaitclassletvarifelse";
+    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz{}[]()<>=+-*/%$#@!&|;:.,";
 
   const fontSize = 16;
   let columns: number;
@@ -33,18 +34,14 @@ export const startMatrix = () => {
       const text =
         codeChars[Math.floor(Math.random() * codeChars.length)];
 
-      /* glowing coder green */
+      /* Neon developer glow */
       ctx.fillStyle = "#00ff9c";
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 12;
       ctx.shadowColor = "#00ff9c";
 
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-      /* reset drop */
-      if (
-        drops[i] * fontSize > canvas.height &&
-        Math.random() > 0.975
-      ) {
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
 
